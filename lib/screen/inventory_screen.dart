@@ -108,7 +108,7 @@ class _InventoryScreenState extends State<InventoryScreen> {
       } else {
         await InventoryController.to.fetchAll(reset: true);
         AlertUtils.alert(
-          'New inventory added successfully',
+          '${noOfItem == 1 ? 'New inventory' : '$noOfItem Inventories'}  added successfully',
           okCallback: () async {
             setState(() => isSubmitting = false);
             Get.back();
@@ -144,7 +144,7 @@ class _InventoryScreenState extends State<InventoryScreen> {
                         children: [
                           Icon(Icons.check, color: Theme.of(context).primaryColor),
                           Text(
-                            'Add',
+                            'Submit',
                             style: TextStyle(
                               color: Theme.of(context).primaryColor,
                             ),
