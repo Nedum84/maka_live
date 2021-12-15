@@ -18,7 +18,7 @@ class InventoryController extends GetxController {
 
   Future<List<InventoryModel>> fetchAll({bool reset = false}) async {
     setLoading(true);
-    if (reset || _inventoryList.isEmpty) {
+    if (reset == true || _inventoryList.isEmpty) {
       var items = await InventoryRepo.findShowsById();
       setLoading(false);
       if (items != null) {

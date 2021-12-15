@@ -19,30 +19,24 @@ class InventoryRepo {
     return null;
   }
 
-  static Future<InventoryModel?> createInventory({required List<InventoryModel> items}) async {
-    final List<Map<String, dynamic>> itemMap = items.map((e) => e.toMap()).toList();
+  static Future<bool> createInventory({required List<InventoryModel> items}) async {
+    List<Map<String, dynamic>> itemMap = items.map((e) => e.toMap()).toList();
+
+    itemMap = itemMap
+        .map(
+          (element) => {
+            "itemID": element["itemID"],
+            "itemName": element["itemName"],
+            "quantity": element["quantity_sold"],
+          },
+        )
+        .toList();
+
+    print(itemMap);
     try {
       Response response = await apiClient.post('/inventory', data: itemMap);
 
-      print(response.data);
-
-      if (response.statusCode == 200) {
-        return InventoryModel.fromMap(response.data);
-      }
-    } catch (e) {
-      print(e);
-    }
-
-    return null;
-  }
-
-  static Future<bool> buyItem({String showId = "222", required String itemID}) async {
-    try {
-      Response response = await apiClient.post('/show/$showId/buy_item/$itemID');
-
-      print(response.data);
-
-      if (response.statusCode == 200 || response.statusCode == 201) {
+      if (response.statusCode == 201) {
         return true;
       }
     } catch (e) {
@@ -50,5 +44,30 @@ class InventoryRepo {
     }
 
     return false;
+  }
+
+  static Future<String?> buyItem({String showId = "222", required String itemID}) async {
+    try {
+      Response response = await apiClient.post('/show/$showId/buy_item/$itemID');
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return "ok";
+      }
+    } catch (error) {
+      if (error is DioError) {
+        if (error.response?.statusCode == 409) {
+          // return "Item is no longer in stock";
+        }
+
+        // ignore: unnecessary_null_comparison
+        if (error != null && error.response?.data?.containsKey("message")) {
+          return error.response!.data?["message"] ?? error.message;
+        } else {
+          return error.message;
+        }
+      }
+    }
+
+    return null;
   }
 }

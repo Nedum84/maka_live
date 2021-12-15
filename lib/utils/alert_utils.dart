@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AlertUtils {
-  static void alert(String content, {String? title, String? okBtnTxt, Function()? okBtnCallback}) {
+  static void alert(String content, {String? title, Function()? okCallback}) {
     Get.dialog(
       AlertDialog(
         title: (title != null) ? Text(title) : Container(),
@@ -12,18 +12,11 @@ class AlertUtils {
             child: const Text("OK"),
             onPressed: () {
               Get.back();
+              if (okCallback != null) {
+                okCallback();
+              }
             },
           ),
-          if (okBtnTxt != null)
-            MaterialButton(
-              child: Text(
-                "$okBtnTxt ",
-              ),
-              onPressed: () {
-                Get.back();
-                okBtnCallback!();
-              },
-            )
         ],
       ),
     );

@@ -21,14 +21,21 @@ class _BuyItemBottomSheetState extends State<BuyItemBottomSheet> {
 
   _onTap() async {
     setState(() => isLoading = true);
-    final buy = await InventoryRepo.buyItem(itemID: widget.inventoryModel.itemId);
+    final response = await InventoryRepo.buyItem(itemID: widget.inventoryModel.itemId);
 
-    if (buy) {
-      AlertUtils.alert('Item purchased successfully');
-      await InventoryController.to.fetchAll();
-      Get.back();
+    if (response == "ok") {
+      await InventoryController.to.fetchAll(reset: true);
+      AlertUtils.alert(
+        'Item purchased successfully',
+        okCallback: () async {
+          setState(() => isLoading = false);
+          Get.back();
+        },
+      );
+    } else {
+      AlertUtils.alert(response ?? 'An error occurred, try again');
+      setState(() => isLoading = false);
     }
-    setState(() => isLoading = true);
   }
 
   @override
@@ -88,7 +95,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: () => isLoading ? null : onTap(),
       child: Container(
         width: double.infinity,
         alignment: Alignment.center,

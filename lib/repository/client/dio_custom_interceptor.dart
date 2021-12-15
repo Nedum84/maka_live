@@ -13,11 +13,10 @@ class DioCustomInterceptors extends Interceptor {
 
   @override
   onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    print('REQUEST[${options.method}] => PATH: ${options.path}');
+    // print('REQUEST[${options.method}] => PATH: ${options.path}');
 
     options.baseUrl = 'https://us-central1-inventory-ts-firestore.cloudfunctions.net/api';
-    options.connectTimeout = 15000;
-    options.receiveTimeout = 12000;
+    options.connectTimeout = 20000;
     // Transform response data to Json Map
     options.responseType = ResponseType.json;
     //Add headers
@@ -28,7 +27,7 @@ class DioCustomInterceptors extends Interceptor {
 
   @override
   onResponse(Response response, ResponseInterceptorHandler handler) {
-    print('RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
+    // print('RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
     return super.onResponse(response, handler);
   }
 
