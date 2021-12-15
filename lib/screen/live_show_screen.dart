@@ -57,7 +57,7 @@ class ShowItemsSold extends StatelessWidget {
         if (iController.isLoading && iController.inventoryList.isEmpty) {
           return Container(
             margin: EdgeInsets.all(Constants.PADDING),
-            child: const Center(child: CircularProgressIndicator()),
+            child: Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor))),
           );
         }
         if (iController.inventoryList.isEmpty) {
@@ -75,7 +75,7 @@ class ShowItemsSold extends StatelessWidget {
             ),
             Container(
               padding: EdgeInsets.zero,
-              height: 200,
+              height: 210,
               child: ListView.separated(
                 padding: EdgeInsets.symmetric(horizontal: Constants.PADDING / 2),
                 scrollDirection: Axis.horizontal,
@@ -108,7 +108,7 @@ class BuyNewItems extends StatelessWidget {
       if (iController.isLoading && iController.inventoryList.isEmpty) {
         return Container(
           margin: EdgeInsets.all(Constants.PADDING),
-          child: const Center(child: CircularProgressIndicator()),
+          child: Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor))),
         );
       }
       if (iController.inventoryList.isEmpty) {
