@@ -13,9 +13,9 @@ How does it work
 
 Screenshots
 >Add inventory screen
-![Add multiple inventory](https://res.cloudinary.com/nellyinc/image/upload/v1639609188/ImageHosting/Simulator_Screen_Shot_-_iPhone_X_-_2021-12-15_at_23.57.16_if7dbq.png)
+<img src="https://res.cloudinary.com/nellyinc/image/upload/v1639609188/ImageHosting/Simulator_Screen_Shot_-_iPhone_X_-_2021-12-15_at_23.57.16_if7dbq.png" width="250" alt="Add multiple inventory" />
 
 >Latest show /purchase screen
-![Browse products](https://res.cloudinary.com/nellyinc/image/upload/v1639609188/ImageHosting/Simulator_Screen_Shot_-_iPhone_X_-_2021-12-15_at_23.56.44_atdrra.png)
+<img src="https://res.cloudinary.com/nellyinc/image/upload/v1639609188/ImageHosting/Simulator_Screen_Shot_-_iPhone_X_-_2021-12-15_at_23.56.44_atdrra.png" width="250" alt="Browse shows" />
 
-![Buy products](https://res.cloudinary.com/nellyinc/image/upload/v1639609188/ImageHosting/Simulator_Screen_Shot_-_iPhone_X_-_2021-12-15_at_23.56.51_mrtggz.png)
+<img src="https://res.cloudinary.com/nellyinc/image/upload/v1639609188/ImageHosting/Simulator_Screen_Shot_-_iPhone_X_-_2021-12-15_at_23.56.51_mrtggz.png" width="250" alt="Buy products" />
